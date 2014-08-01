@@ -1,0 +1,17 @@
+{
+	"name": "innit/scribe",
+    "description": "Alle dem pretty emails",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emil Kjelsrud",
+            "email": "emilkje@gmail.com"
+        }
+    ],
+    "require": {
+        "tijsverkoyen/css-to-inline-styles": "*"
+    },
+    "autoload": {
+        "psr-4": { "Innit\\": "src"}
+    }
+}
