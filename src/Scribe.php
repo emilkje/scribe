@@ -16,7 +16,8 @@ class Scribe {
 		$this->tidy = new \csstidy();
 		$this->tidy->set_cfg('remove_last_;', true);
 		$this->tidy->set_cfg('merge_selectors', 1);
-		$this->tidy->set_cfg('discard_invalid_properties', true);
+		$this->tidy->set_cfg('discard_invalid_properties', false);
+		$this->tidy->set_cfg('css_level', 'CSS3.0');
 	}
 
 	function setHtml($html) {
