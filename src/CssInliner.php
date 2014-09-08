@@ -5,7 +5,7 @@ namespace Innit;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 require __DIR__.'/csstidy/class.csstidy.php';
 
-class Scribe {
+class CssInliner {
 
 	private $inliner;
 	private $tidy;

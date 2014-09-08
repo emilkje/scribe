@@ -2,9 +2,9 @@
 
 require '../vendor/autoload.php';
 
-$scribe = new Innit\Scribe;
+$email = new Innit\CssInliner;
 
-$scribe->setHtml(file_get_contents('example.html'));
-$scribe->setCss(file_get_contents('example.css'));
+$email->setHtml(file_get_contents('example.html'));
+$email->setCss(file_get_contents('example.css'));
 
-echo $scribe->combine();
+echo $email->combine();
