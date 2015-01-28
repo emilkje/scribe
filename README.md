@@ -21,6 +21,7 @@ Scribe is package to help you create beatiful email templates. By compiling easy
 
 ##Middlewares
 You can make your own middlewares to manipulate the html or css before it is combined:
+
 	<?php
 
 	class MyMiddleware implements Innit\Support\MiddlewareInterface {
@@ -37,7 +38,7 @@ You can make your own middlewares to manipulate the html or css before it is com
 
 	}
 
-	//Register our new middleware with the application
+	// Register our new middleware with the application.
 	$cssInlinerInstance->with(new MyMiddleware);
 
 ##Credits
