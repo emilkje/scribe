@@ -3,35 +3,49 @@
 namespace Innit;
 
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
-require __DIR__.'/csstidy/class.csstidy.php';
 
-class CssInliner {
+class CssInliner implements Support\ApplicationInterface {
 
 	private $inliner;
-	private $tidy;
+	private $css;
+	private $html;
+	private $middlewares = array();
 
 	function __construct()
 	{
 		$this->inliner = new CssToInlineStyles();
-		$this->tidy = new \csstidy();
-		$this->tidy->set_cfg('remove_last_;', true);
-		$this->tidy->set_cfg('merge_selectors', 1);
-		$this->tidy->set_cfg('discard_invalid_properties', false);
-		$this->tidy->set_cfg('css_level', 'CSS3.0');
 	}
 
 	function setHtml($html) {
-		$this->inliner->setHtml($html);
+		$this->html = $html;
 		return $this;
 	}
 
 	function setCss($css) {
 		
-		$this->tidy->parse($css);
-		$this->inliner->setCss($this->tidy->print->plain());
+		$this->css = $css;
+		return $this;
+	}
+
+	function getHtml() {
+		return $this->html;
+	}
+
+	function getCss() {
+		return $this->css;
 	}
 
 	function combine() {
+		foreach($this->middlewares as $middleware) {
+			$middleware->run($this);
+		}
+
+		$this->inliner->setCss($this->getCss());
+		$this->inliner->setHtml($this->getHtml());
 		return $this->inliner->convert();
+	}
+
+	public function with(Support\MiddlewareInterface $middleware) {
+		array_push($this->middlewares, $middleware);
 	}
 }
