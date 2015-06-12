@@ -225,7 +225,7 @@ class csstidy_optimise
     function shorthand($value)
     {
         $important = '';
-        if(csstidy::is_important($value))
+        if($this->parser->is_important($value))
         {
             $values = csstidy::gvw_important($value);
             $important = '!important';
@@ -623,7 +623,7 @@ class csstidy_optimise
                 for($i = 0; $i < 4; $i++)
                 {
                     $val = $array[$value[$i]];
-                    if(csstidy::is_important($val))
+                    if($this->parser->is_important($val))
                     {
                         $important = '!important';
                         $return[$key] .= csstidy::gvw_important($val).' ';
